@@ -1,16 +1,45 @@
 #include <iostream>
 using namespace std;
+
+int binarySearch(int arr[], int size, int target)
+{
+    int start = 0;
+    int end = size - 1;
+    while (start <= end)
+    {
+        int mid = start + (end - start) / 2;
+
+        if (arr[mid] == target)
+        {
+            return mid;
+        }
+        else if (arr[mid] > target)
+        {
+            end = mid - 1;
+        }
+        else
+        {
+            start = mid + 1;
+        }
+    }
+
+    return -1;
+}
+
 int main()
 {
-    int arr[5];
-    cout << "enter values here: ";
-    for (int i = 0; i < 5; i++)
+    int arr[] = {2, 3, 5, 7, 10, 12, 15, 19};
+    int size = 8;
+    int target = 190;
+
+    int indexofTarget = binarySearch(arr, size, target);
+    if (indexofTarget == -1)
     {
-        cin >> arr[i];
+        cout << "Target Not Found" << endl;
     }
-    for (int i = 0; i < 5; i++)
+    else
     {
-        cout << arr[i] / arr[i] << " ";
+        cout << "Target Found at " << indexofTarget << "  INDEX" << endl;
     }
-    cout << "Array created succesfully!";
+    return 0;
 }
