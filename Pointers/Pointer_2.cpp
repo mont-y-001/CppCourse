@@ -26,4 +26,9 @@ int main()
     cout << i[arr] << endl; // New
     cout << *(arr + i) << endl;
     cout << *(i + arr) << endl;
+
+    // Important
+    // cout << arr + 1 << endl;   //104 + 4 = 108 address
+    // int *p = arr+1 << endl;     //108 address
+    // arr = arr + 1  << endl;❌
 }
