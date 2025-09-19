@@ -32,3 +32,6 @@ int main()
     }
     return 0;
 }
+
+// bestcase = o(n)
+// worst case = o(n^2)
