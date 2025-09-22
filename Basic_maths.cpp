@@ -11,3 +11,40 @@
 // gcd(a,b) = gcd(b-a,a)   b>a
 
 // Fast Exponentiation ? doubt
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+vector<bool> Sieve(int n)
+{
+    vector<bool> sieve(n + 1, true);
+    sieve[0] = sieve[1] = false;
+
+    for (int i = 2; i * i <= n; i++) // i<=n
+    {
+        if (sieve[i] == true)
+        {
+            int j = i * i; // j = i*2
+            while (j <= n)
+            {
+                sieve[j] = false;
+                j += i;
+            }
+        }
+    }
+    return sieve;
+}
+
+int main()
+{
+    vector<bool> sieve = Sieve(25);
+    for (int i = 0; i <= 25; i++)
+    {
+        if (sieve[i])
+        {
+            cout << i << " ";
+        }
+    }
+    return 0;
+}
