@@ -6,6 +6,8 @@
 using namespace std;
 void PrintReverse(int n)
 {
+    // Tail Recursion
+
     if (n == 0) // Base Condition
         return;
     // Stack concept of storing main,function,call
