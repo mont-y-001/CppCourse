@@ -1,31 +1,25 @@
 #include <iostream>
-#include <vector>
 using namespace std;
-bool isSorted(vector<int> &arr, int size, int i)
+void Print_SubSequence(string str, string output, int i, int size)
 {
-    if (i == size - 1)
+    if (i >= size)
     {
-        return true;
+        cout << output << " " << endl;
+        return;
     }
-    if (arr[i] < arr[i - 1])
-    {
-        return false;
-    }
-    return isSorted(arr, size, i + 1);
+
+    // Exclude
+    Print_SubSequence(str, output, i + 1, size);
+
+    // Include
+    output.push_back(str[i]);
+    Print_SubSequence(str, output, i + 1, size);
 }
 int main()
 {
-    vector<int> arr{2, 4, 6, 8, 10, 15};
-    int size = arr.size();
-    int i = 1;
-    bool ans = isSorted(arr, size, i);
-    if (ans)
-    {
-        cout << "Array is sorted" << endl;
-    }
-    else
-    {
-        cout << "Array is not sorted" << endl;
-    }
-    return 0;
+    string str = "abc";
+    int size = str.length();
+    string output = "";
+    int i = 0;
+    Print_SubSequence(str, output, i, size);
 }
