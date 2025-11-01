@@ -2,49 +2,58 @@
 #include <vector>
 #include <string>
 using namespace std;
+bool isSafe(int i, int j, int row, int col, int maze[][3], vector<vector<bool>> &visited)
+{
+    if ((i >= 0 && i < row) && (j >= 0 && j < col) &&
+        (maze[i][j] == 1) && (visited[i][j] == false))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
 void solveMaze(int maze[3][3], int row, int col, int i, int j, vector<vector<bool>> &visited, vector<string> &path, string output)
 {
     // base case
-    if (i = row - 1 &&j = col - 1)
+    if (i == row - 1 && j == col - 1)
     {
         path.push_back(output);
         return;
     }
     // DOWN
-    if (isSafe(i + 1, row, col, maze, visited))
+    if (isSafe(i + 1, j, row, col, maze, visited))
     {
         visited[i + 1][j] = true;
+        solveMaze(maze, row, col, i + 1, j, visited, path, output + 'D');
+        // Backtracking
+        visited[i + 1][j] = false;
     }
-    solveMaze(maze, row, col, i + 1, j, visited, path, output + 'D');
-    // Backtracking
-    visited[i + 1][j] = false;
 
     // LEFT
-    if (isSafe(i + 1, row, col, maze, visited))
+    if (isSafe(i, j - 1, row, col, maze, visited))
     {
-        visited[i + 1][j] = true;
+        visited[i][j - 1] = true;
+        solveMaze(maze, row, col, i, j - 1, visited, path, output + 'L');
+        visited[i][j - 1] = false;
     }
-    solveMaze(maze, row, col, i + 1, j, visited, path, output + 'D');
-    // Backtracking
-    visited[i + 1][j] = false;
 
     // RIGHT
-    if (isSafe(i + 1, row, col, maze, visited))
+    if (isSafe(i, j + 1, row, col, maze, visited))
     {
-        visited[i + 1][j] = true;
+        visited[i][j + 1] = true;
+        solveMaze(maze, row, col, i, j + 1, visited, path, output + 'R');
+        visited[i][j + 1] = false;
     }
-    solveMaze(maze, row, col, i + 1, j, visited, path, output + 'D');
-    // Backtracking
-    visited[i + 1][j] = false;
 
     // UP
-    if (isSafe(i + 1, row, col, maze, visited))
+    if (isSafe(i - 1, j, row, col, maze, visited))
     {
-        visited[i + 1][j] = true;
+        visited[i - 1][j] = true;
+        solveMaze(maze, row, col, i - 1, j, visited, path, output + 'U');
+        visited[i - 1][j] = false;
     }
-    solveMaze(maze, row, col, i + 1, j, visited, path, output + 'D');
-    // Backtracking
-    visited[i + 1][j] = false;
 }
 int main()
 {
@@ -56,5 +65,21 @@ int main()
     vector<string> path;
     string output = "";
 
+    if (maze[0][0] == 0)
+    {
+        cout << "Path does not exist: " << endl;
+        return 0;
+    }
+
     solveMaze(maze, row, col, 0, 0, visited, path, output);
+    cout << "Printing the result" << endl;
+    for (auto val : path)
+    {
+        cout << val << endl;
+    }
+
+    if (path.size() == 0)
+    {
+        cout << "No Path Exists:" << endl;
+    }
 }
