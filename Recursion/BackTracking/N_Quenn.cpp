@@ -2,6 +2,62 @@
 #include <vector>
 using namespace std;
 
+void PrintSolution(vector<vector<int>> &board, int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            cout << board[i][j] << " ";
+        }
+        cout << endl;
+    }
+    cout << endl
+         << endl;
+}
+
+bool isSafe(int row, int col, vector<vector<int>> &board, int n)
+{
+    int i = row;
+    int j = col;
+
+    // check row
+    while (j >= 0)
+    {
+        if (board[i][j] == 1)
+        {
+            return false;
+        }
+        j--;
+    }
+    // check upper left
+    i = row;
+    j = col;
+    while (i >= 0 && j >= 0)
+    {
+        if (board[i][j] == 1)
+        {
+            return false;
+        }
+        i--;
+        j--;
+    }
+    // check bottom left
+    i = row;
+    j = col;
+    while (i < n && j >= 0)
+    {
+        if (board[i][j] == 1)
+        {
+            return false;
+        }
+        i++;
+        j--;
+    }
+
+    // No Queen Found
+    return true;
+}
 void Solve(vector<vector<int>> board, int col, int n)
 {
     // base case
@@ -13,10 +69,16 @@ void Solve(vector<vector<int>> board, int col, int n)
     // 1 case solve krenge
     for (int row = 0; row < n; row++)
     {
-        if (isSafe(row, col, board, n) {
-                // Queen rakh do
-                board[row][col] == 1;
-            })
+        if (isSafe(row, col, board, n))
+        {
+            // Queen rakh do
+            board[row][col] == 1;
+
+            // recusrion sol laega
+            Solve(board, col + 1, n);
+            // backtracking
+            board[row][col] == 0; // empty or not visited mark kr denge vapas aate hue
+        }
     }
 }
 int main()
