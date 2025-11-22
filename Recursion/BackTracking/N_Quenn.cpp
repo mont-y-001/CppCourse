@@ -8,7 +8,10 @@ void PrintSolution(vector<vector<int>> &board, int n)
     {
         for (int j = 0; j < n; j++)
         {
-            cout << board[i][j] << " ";
+            if (board[i][j] == 1)
+                cout << "Q ";
+            else
+                cout << "- ";
         }
         cout << endl;
     }
@@ -18,46 +21,40 @@ void PrintSolution(vector<vector<int>> &board, int n)
 
 bool isSafe(int row, int col, vector<vector<int>> &board, int n)
 {
-    int i = row;
-    int j = col;
+    int i = row, j = col;
 
-    // check row
+    // check left row
     while (j >= 0)
     {
         if (board[i][j] == 1)
-        {
             return false;
-        }
         j--;
     }
-    // check upper left
-    i = row;
-    j = col;
+
+    // check upper left diagonal
+    i = row, j = col;
     while (i >= 0 && j >= 0)
     {
         if (board[i][j] == 1)
-        {
             return false;
-        }
         i--;
         j--;
     }
-    // check bottom left
-    i = row;
-    j = col;
+
+    // check lower left diagonal
+    i = row, j = col;
     while (i < n && j >= 0)
     {
         if (board[i][j] == 1)
-        {
             return false;
-        }
         i++;
         j--;
     }
 
-    // No Queen Found
+    // safe position
     return true;
 }
+
 void Solve(vector<vector<int>> board, int col, int n)
 {
     // base case
@@ -66,25 +63,26 @@ void Solve(vector<vector<int>> board, int col, int n)
         PrintSolution(board, n);
         return;
     }
-    // 1 case solve krenge
+
     for (int row = 0; row < n; row++)
     {
         if (isSafe(row, col, board, n))
         {
-            // Queen rakh do
-            board[row][col] == 1;
+            // place queen
+            board[row][col] = 1;
 
-            // recusrion sol laega
+            // recursive call for next column
             Solve(board, col + 1, n);
-            // backtracking
-            board[row][col] == 0; // empty or not visited mark kr denge vapas aate hue
+
+            // backtrack
+            board[row][col] = 0;
         }
     }
 }
+
 int main()
 {
     int n = 4;
     vector<vector<int>> board(n, vector<int>(n, 0));
-    int col = 0;
-    Solve(board, col, n);
+    Solve(board, 0, n);
 }
