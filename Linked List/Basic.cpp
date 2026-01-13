@@ -96,6 +96,32 @@ void print(Node *head)
         temp = temp->next;
     }
 }
+
+//Reverse Linked List
+Node *reverse(Node *prev, Node *curr)
+{
+    if (curr == NULL)
+        return prev;
+
+    Node *forward = curr->next;
+    curr->next = prev;
+
+    return reverse(curr, forward);
+}
+
+Node *reverseUsingLoop(Node *head)
+{
+    Node *prev = NULL;
+    Node *curr = head;
+    while (curr != NULL)
+    {
+        Node *temp = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = temp;
+    }
+    return prev;
+}
 int main()
 {
     // Node *first = new Node(10);
@@ -122,10 +148,20 @@ int main()
     InserAtTail(head, tail, 40);
     InserAtTail(head, tail, 60);
     print(head);
+    cout << endl;
     cout << "After Insertion at random position" << endl;
 
     InserAtPosition(101, 7, head, tail);
 
     cout << "Printing The LL" << endl;
     print(head);
+    cout << endl;
+
+    Node *prev = NULL;
+    Node *curr = head;
+    cout << "Printing reverse list" << endl;
+    head = reverse(prev, curr);
+    cout << endl;
+    print(head);
+    cout << endl;
 }
