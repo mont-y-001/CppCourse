@@ -102,4 +102,5 @@ int main()
     // cout << endl;
     cout << "Loop present or not: " << CheckForLoop(head) << endl;
     cout << "Starting point of LOOP IS: " << StartingPointOfLoop(head)->data << endl;
+    // ramovelopp function remaining
 }
