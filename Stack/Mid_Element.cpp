@@ -1,5 +1,5 @@
 #include <iostream>
-#include <Stack>
+#include <stack>
 using namespace std;
 void PrintMid(stack<int> &s, int &totalSize)
 {
