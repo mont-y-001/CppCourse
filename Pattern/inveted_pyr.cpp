@@ -13,7 +13,7 @@ int main()
         }
         for (int col = 0; col < n - row; col++)
         {
-            cout << (2 * col + 1) << " ";
+            cout << (2 * col + 1) << " "; // if want start simply ("* ")
         }
         cout << endl;
     }
