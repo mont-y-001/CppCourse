@@ -1,1 +1,3 @@
- two spaces for each to align with star + space
+ int n;
+    cout << "Enter any number: " << endl;
+    cin >> n;
