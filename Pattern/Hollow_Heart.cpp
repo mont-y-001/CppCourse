@@ -1,12 +1,14 @@
 #include <iostream>
 using namespace std;
 
-int main() {
+int main()
+{
 
-    int n = 6;  
+    int n = 6;
 
     // Top part
-    for (int i = n/2; i <= n; i += 2) {
+    for (int i = n / 2; i <= n; i += 2)
+    {
 
         // left spaces
         for (int j = 1; j < n - i; j += 2)
@@ -28,7 +30,8 @@ int main() {
     }
 
     // Bottom part
-    for (int i = n; i >= 1; i--) {
+    for (int i = n; i >= 1; i--)
+    {
 
         // left spaces
         for (int j = i; j < n; j++)
