@@ -2,11 +2,17 @@
 #include <stack>
 #include <queue>
 using namespace std;
-void ReverseKElement(queue<int> &q, int K)
+void ReverseKElement(queue<int> &q, int k)
 {
     stack<int> st;
     int count = 0;
     int n = q.size();
+    int K = k % n;
+
+    if (K == 0)
+    {
+        return;
+    }
     // step1: K elements ko uthakar stack me push kr do
     while (!q.empty())
     {
@@ -51,7 +57,7 @@ int main()
     q.push(50);
     q.push(60);
 
-    ReverseKElement(q, 1);
+    ReverseKElement(q, 0);
     while (!q.empty())
     {
         cout << q.front() << " ";
