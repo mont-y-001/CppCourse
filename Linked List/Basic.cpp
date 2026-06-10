@@ -68,7 +68,7 @@ void InserAtPosition(int data, int position, Node *&head, Node *&tail)
     }
     int len = findlength(head);
 
-    if (position >= len)
+    if (position > len)
     {
         InserAtTail(head, tail, data);
         return;
